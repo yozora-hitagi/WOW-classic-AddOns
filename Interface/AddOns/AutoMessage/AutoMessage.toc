@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title-zhCN: 频道自动喊话
+## Notes: Please Don't Spam!
+## Author: The BOFH (Stewarta of Nordrassil)
+## SavedVariables:ticktime, channame, am, charname
+## Version: 1.13.4
+AutoMessage.xml
