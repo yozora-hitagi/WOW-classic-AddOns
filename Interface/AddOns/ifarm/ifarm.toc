@@ -1,0 +1,10 @@
+## Interface: 11302
+## Title: ifarm |cFF800080-]|cFFC0C0C0iCeWaTeR|cFF800080[-
+## Author: icewater @ Bronze Dragonflight [RiP]
+## Version: 1.0
+## Notes: ifarm deletes unwanted bag items when doing instance farming, enabling you to auto-loot and save you from being picky on drops, which makes you save time
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariablesPerCharacter: GLOBAL_DELETE,Farm_Options
+ifarm.xml
+ifarm.lua
