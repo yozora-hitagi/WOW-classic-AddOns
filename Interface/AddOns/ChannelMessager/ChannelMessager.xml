@@ -1,0 +1,189 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <Script file="ChannelMessager.lua" />
+  <Frame name="AMCFGFrame" enableKeyboard="true" enableMouse="true" movable="true" parent="UIParent" hidden="true" resizable="true">
+    <Scripts>
+      <OnLoad> am="这里输入你想发送的消息"; channame="s";
+				initproc();
+        AMCFGFrame:RegisterForDrag("LeftButton");
+      </OnLoad>
+      <OnUpdate>
+
+      </OnUpdate>
+
+      <OnDragStart>AMCFGFrame:StartMoving();
+AMCFGFrame.isMoving = true;
+      </OnDragStart>
+      <OnDragStop>AMCFGFrame:StopMovingOrSizing();
+AMCFGFrame.isMoving = false;
+      </OnDragStop>
+
+    </Scripts>
+
+    <Size>
+      <AbsDimension x="450" y="300" />
+    </Size>
+    <Anchors>
+      <Anchor point="CENTER" />
+    </Anchors>
+    <Backdrop bgFile="Interface\TutorialFrame\TutorialFrameBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+      <EdgeSize>
+        <AbsValue val="16" />
+      </EdgeSize>
+      <TileSize>
+        <AbsValue val="32" />
+      </TileSize>
+      <BackgroundInsets>
+        <AbsInset left="5" right="5" top="5" bottom="5" />
+      </BackgroundInsets>
+    </Backdrop>
+    <Layers>
+      <Layer level="OVERLAY">
+        <FontString name="$parentTitle" inherits="GameFontNormal" text="频道喊话">
+          <Anchors>
+            <Anchor point="TOP">
+              <Offset>
+                <AbsDimension x="0" y="-18" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+        <FontString name="$parentTitle" inherits="GameFontNormal" text="消息内容:">
+          <Anchors>
+            <Anchor point="TOPLEFT">
+              <Offset>
+                <AbsDimension x="12" y="-60" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+
+        <FontString name="$parentTitle" inherits="GameFontNormal" text="频道: s, y, p, ra, 表情, 团队警报, g, go, bg, 频道 1-10">
+          <Anchors>
+            <Anchor point="TOPLEFT">
+              <Offset>
+                <AbsDimension x="12" y="-180" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+
+      </Layer>
+    </Layers>
+    <Frames>
+      <Button name="$parentButtonClose" inherits="OptionsButtonTemplate" text="退出">
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT">
+            <Offset>
+              <AbsDimension x="-12" y="16" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick> HideUIPanel(AMCFGFrame);</OnClick>
+        </Scripts>
+      </Button>
+
+      <Button name="$parentButtonstart" inherits="OptionsButtonTemplate" text="执行">
+        <Anchors>
+          <Anchor point="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="12" y="16" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick> am=AMCFGFrameMsg:GetText(); channame=AMCFGFrameCHN:GetText(); timerproc(arg); </OnClick>
+        </Scripts>
+      </Button>
+
+      <ScrollFrame name="$parentMsgScrollFrame" inherits="UIPanelScrollFrameTemplate">
+        <Size>
+          <AbsDimension x="400" y="80" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="12" y="-80" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <ScrollChild>
+          <EditBox name="AMCFGFrameMsg" multiLine="true" maxLetters="255">
+            <Size>
+              <AbsDimension x="400" y="80" />
+            </Size>
+            <Anchors>
+              <Anchor point="TOPLEFT">
+                <Offset>
+                  <AbsDimension x="0" y="0" />
+                </Offset>
+              </Anchor>
+            </Anchors>
+            <Scripts>
+              <OnEscapePressed>
+						HideUIPanel(AMCFGFrame);
+              </OnEscapePressed>
+            </Scripts>
+            <FontString inherits="ChatFontNormal"/>
+          </EditBox>
+        </ScrollChild>
+
+      </ScrollFrame>
+
+
+
+      <EditBox name="AMCFGFrameCHN" letters="255">
+
+        <Scripts>
+          <OnEscapePressed>
+						HideUIPanel(AMCFGFrame);
+          </OnEscapePressed>
+        </Scripts>
+
+        <Size>
+          <AbsDimension x="200" y="32" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPRIGHT">
+            <Offset>
+              <AbsDimension x="-20" y="-170" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <Texture file="Interface\ChatFrame\UI-ChatInputBorder-Left">
+              <Size>
+                <AbsDimension x="120" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="LEFT">
+                  <Offset>
+                    <AbsDimension x="-20" y="0" />
+                  </Offset>
+                </Anchor>
+              </Anchors>
+              <TexCoords left="0" right="0.2" top="0" bottom="1.0" />
+            </Texture>
+            <Texture file="Interface\ChatFrame\UI-ChatInputBorder-Right">
+              <Size>
+                <AbsDimension x="120" y="32" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT">
+                  <Offset>
+                    <AbsDimension x="10" y="0" />
+                  </Offset>
+                </Anchor>
+              </Anchors>
+              <TexCoords left="0.7" right="1.0" top="0" bottom="1.0" />
+            </Texture>
+          </Layer>
+        </Layers>
+        <FontString inherits="ChatFontNormal" />
+      </EditBox>
+    </Frames>
+  </Frame>
+</Ui>

@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title-zhCN: 频道喊话
+## Notes: 
+## Author: Yozora
+## SavedVariables:channame, am
+## Version: 1.13.4
+ChannelMessager.xml
